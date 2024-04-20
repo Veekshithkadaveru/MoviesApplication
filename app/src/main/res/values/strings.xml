@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MoviesApplication</string>
+    <string name="popular">popular movies</string>
+    <string name="upcoming">upcoming movies</string>
 </resources>

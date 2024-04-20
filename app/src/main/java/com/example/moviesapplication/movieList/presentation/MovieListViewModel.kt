@@ -56,20 +56,24 @@ class MovieListViewModel @Inject constructor(
                 movieListState.value.popularMovieListPage
             ).collectLatest { result ->
                 when (result) {
-                    is Resource.Error -> _movieListState.update {
-                        it.copy(isLoading = false)
+                    is Resource.Error -> {
+                        _movieListState.update {
+                            it.copy(isLoading = false)
+                        }
                     }
 
-                    is Resource.Success -> result.data?.let { popularList ->
-                        _movieListState.update {
-                            it.copy(
-                                popularMovieList = movieListState.value.popularMovieList
-                                        + popularList.shuffled(),
-                                popularMovieListPage = movieListState.value.popularMovieListPage + 1
+                    is Resource.Success -> {
+                        result.data?.let { popularList ->
+                            _movieListState.update {
+                                it.copy(
+                                    popularMovieList = movieListState.value.popularMovieList
+                                            + popularList.shuffled(),
+                                    popularMovieListPage = movieListState.value.popularMovieListPage + 1
 
-                            )
+                                )
+                            }
+
                         }
-
                     }
 
                     is Resource.Loading -> {
@@ -87,26 +91,29 @@ class MovieListViewModel @Inject constructor(
             _movieListState.update {
                 it.copy(isLoading = true)
             }
+
             MovieListRepository.getMovieList(
                 forceFetchFromRemote,
                 Category.UPCOMING,
                 movieListState.value.upcomingMovieListPage
             ).collectLatest { result ->
                 when (result) {
-                    is Resource.Error -> _movieListState.update {
-                        it.copy(isLoading = false)
+                    is Resource.Error -> {
+                        _movieListState.update {
+                            it.copy(isLoading = false)
+                        }
                     }
 
-                    is Resource.Success -> result.data?.let { upcomingList ->
-                        _movieListState.update {
-                            it.copy(
-                                upcomingMovieList = movieListState.value.upcomingMovieList
-                                        + upcomingList.shuffled(),
-                                upcomingMovieListPage = movieListState.value.upcomingMovieListPage + 1
-
-                            )
+                    is Resource.Success -> {
+                        result.data?.let { upcomingList ->
+                            _movieListState.update {
+                                it.copy(
+                                    upcomingMovieList = movieListState.value.upcomingMovieList
+                                            + upcomingList.shuffled(),
+                                    upcomingMovieListPage = movieListState.value.upcomingMovieListPage + 1
+                                )
+                            }
                         }
-
                     }
 
                     is Resource.Loading -> {
