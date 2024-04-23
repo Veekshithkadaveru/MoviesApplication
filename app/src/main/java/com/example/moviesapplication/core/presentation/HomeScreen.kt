@@ -50,7 +50,8 @@ fun HomeScreen(navController: NavHostController) {
 
     Scaffold(bottomBar = {
         BottomNavigationBar(
-            bottomNavController = bottomNavController, onEvent = movieListViewModel::onEvent
+            bottomNavController = bottomNavController,
+            onEvent = movieListViewModel::onEvent
         )
     }, topBar = {
         TopAppBar(
@@ -61,12 +62,13 @@ fun HomeScreen(navController: NavHostController) {
                     else
                         stringResource(R.string.upcoming),
                     fontSize = 20.sp
+
                 )
             },
             modifier = Modifier.shadow(2.dp),
-            colors = TopAppBarDefaults.smallTopAppBarColors(
-                MaterialTheme.colorScheme.inverseOnSurface
-            )
+            colors = topAppBarColors(
+        MaterialTheme.colorScheme.inverseOnSurface
+        )
         )
     }) {
         Box(
@@ -80,16 +82,17 @@ fun HomeScreen(navController: NavHostController) {
             ) {
                 composable(Screen.PopularMovieList.rout) {
                     PopularMoviesScreen(
-                        movieListState,
-                        navController =  navController,
+                        navController = navController,
+                        movieListState = movieListState,
                         onEvent = movieListViewModel::onEvent
                     )
                 }
                 composable(Screen.UpcomingMovieList.rout) {
-                UpcomingMoviesScreen(movieListState,
-                    navController =navController,
-                    onEvent = movieListViewModel::onEvent
-                )
+                    UpcomingMoviesScreen(
+                        navController = navController,
+                        movieListState = movieListState,
+                        onEvent = movieListViewModel::onEvent
+                    )
 
 
                 }
@@ -153,7 +156,6 @@ fun BottomNavigationBar(
             }
         }
     }
-
 }
 
 data class BottomItem(

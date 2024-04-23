@@ -42,6 +42,8 @@ class MovieListViewModel @Inject constructor(
                     getUpcomingMovieList(true)
                 }
             }
+
+
         }
     }
 
