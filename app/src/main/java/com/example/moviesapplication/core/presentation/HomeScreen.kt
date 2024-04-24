@@ -50,25 +50,19 @@ fun HomeScreen(navController: NavHostController) {
 
     Scaffold(bottomBar = {
         BottomNavigationBar(
-            bottomNavController = bottomNavController,
-            onEvent = movieListViewModel::onEvent
+            bottomNavController = bottomNavController, onEvent = movieListViewModel::onEvent
         )
     }, topBar = {
         TopAppBar(
             title = {
                 Text(
-                    text = if (movieListState.isCurrentPopularScreen)
-                        stringResource(R.string.popular)
-                    else
-                        stringResource(R.string.upcoming),
-                    fontSize = 20.sp
+                    text = if (movieListState.isCurrentPopularScreen) stringResource(R.string.popular)
+                    else stringResource(R.string.upcoming), fontSize = 20.sp
 
                 )
-            },
-            modifier = Modifier.shadow(2.dp),
-            colors = topAppBarColors(
-        MaterialTheme.colorScheme.inverseOnSurface
-        )
+            }, modifier = Modifier.shadow(2.dp), colors = topAppBarColors(
+                MaterialTheme.colorScheme.inverseOnSurface
+            )
         )
     }) {
         Box(
@@ -77,8 +71,7 @@ fun HomeScreen(navController: NavHostController) {
                 .padding(it)
         ) {
             NavHost(
-                navController = bottomNavController,
-                startDestination = Screen.PopularMovieList.rout
+                navController = bottomNavController, startDestination = Screen.PopularMovieList.rout
             ) {
                 composable(Screen.PopularMovieList.rout) {
                     PopularMoviesScreen(
@@ -93,13 +86,10 @@ fun HomeScreen(navController: NavHostController) {
                         movieListState = movieListState,
                         onEvent = movieListViewModel::onEvent
                     )
-
-
                 }
             }
         }
     }
-
 }
 
 
@@ -107,21 +97,16 @@ fun HomeScreen(navController: NavHostController) {
 fun BottomNavigationBar(
     bottomNavController: NavHostController, onEvent: (MovieListUiEvent) -> Unit
 ) {
-
     val items = listOf(
         BottomItem(
-            title = stringResource(R.string.popular),
-            icon = Icons.Rounded.Movie
+            title = stringResource(R.string.popular), icon = Icons.Rounded.Movie
         ), BottomItem(
-            title = stringResource(R.string.upcoming),
-            icon = Icons.Rounded.Upcoming
+            title = stringResource(R.string.upcoming), icon = Icons.Rounded.Upcoming
         )
     )
-
     val selected = rememberSaveable {
         mutableIntStateOf(0)
     }
-
     NavigationBar {
         Row(
             modifier = Modifier.background(MaterialTheme.colorScheme.inverseOnSurface)

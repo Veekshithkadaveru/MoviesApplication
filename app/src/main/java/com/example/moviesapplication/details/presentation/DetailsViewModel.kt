@@ -52,9 +52,7 @@ class DetailsViewModel @Inject constructor(
                             _detailsState.update {
                                 it.copy(movie = movie)
                             }
-
                         }
-
                     }
                 }
             }

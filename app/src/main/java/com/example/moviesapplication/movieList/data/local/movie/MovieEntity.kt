@@ -2,6 +2,7 @@ package com.example.moviesapplication.movieList.data.local.movie
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+
 @Entity
 data class MovieEntity(
     val adult: Boolean,
@@ -19,6 +20,6 @@ data class MovieEntity(
     val vote_count: Int,
 
     @PrimaryKey
-    val id:Int?,
+    val id: Int?,
     val category: String
-    )
+)

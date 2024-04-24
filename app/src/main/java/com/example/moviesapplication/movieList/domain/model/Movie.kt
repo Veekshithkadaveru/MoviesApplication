@@ -1,6 +1,6 @@
 package com.example.moviesapplication.movieList.domain.model
 
-data class Movie (
+data class Movie(
     val adult: Boolean,
     val backdrop_path: String,
     val genre_ids: List<Int>,
@@ -14,6 +14,6 @@ data class Movie (
     val video: Boolean,
     val vote_average: Double,
     val vote_count: Int,
-    val id:Int?,
+    val id: Int?,
     val category: String
 )

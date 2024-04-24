@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MovieListViewModel @Inject constructor(
-    private val MovieListRepository: MovieListRepository
+    private val movieListRepository: MovieListRepository
 ) : ViewModel() {
     private var _movieListState = MutableStateFlow(MovieListState())
     val movieListState = _movieListState.asStateFlow()
@@ -52,7 +52,7 @@ class MovieListViewModel @Inject constructor(
             _movieListState.update {
                 it.copy(isLoading = true)
             }
-            MovieListRepository.getMovieList(
+            movieListRepository.getMovieList(
                 forceFetchFromRemote,
                 Category.POPULAR,
                 movieListState.value.popularMovieListPage
@@ -94,7 +94,7 @@ class MovieListViewModel @Inject constructor(
                 it.copy(isLoading = true)
             }
 
-            MovieListRepository.getMovieList(
+            movieListRepository.getMovieList(
                 forceFetchFromRemote,
                 Category.UPCOMING,
                 movieListState.value.upcomingMovieListPage

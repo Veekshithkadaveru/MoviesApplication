@@ -51,15 +51,13 @@ fun DetailsScreen() {
 
     val backDropImageState = rememberAsyncImagePainter(
         model = ImageRequest.Builder(LocalContext.current)
-            .data(MovieApi.IMAGE_BASE_URL + detailsState.movie?.backdrop_path)
-            .size(Size.ORIGINAL)
+            .data(MovieApi.IMAGE_BASE_URL + detailsState.movie?.backdrop_path).size(Size.ORIGINAL)
             .build()
     ).state
 
     val posterImageState = rememberAsyncImagePainter(
         model = ImageRequest.Builder(LocalContext.current)
-            .data(MovieApi.IMAGE_BASE_URL + detailsState.movie?.poster_path)
-            .size(Size.ORIGINAL)
+            .data(MovieApi.IMAGE_BASE_URL + detailsState.movie?.poster_path).size(Size.ORIGINAL)
             .build()
     ).state
 
@@ -149,16 +147,13 @@ fun DetailsScreen() {
                     Spacer(modifier = Modifier.height(16.dp))
 
                     Row(
-                        modifier = Modifier
-                            .padding(start = 16.dp)
+                        modifier = Modifier.padding(start = 16.dp)
                     ) {
                         RatingBar(
                             starsModifier = Modifier.size(25.dp),
                             rating = movie.vote_average / 2,
                             starsColor = Color.Blue
-
                         )
-
                         Text(
                             modifier = Modifier.padding(start = 4.dp),
                             text = movie.vote_average.toString().take(3),
@@ -167,7 +162,6 @@ fun DetailsScreen() {
                             maxLines = 1,
                         )
                     }
-
                     Spacer(modifier = Modifier.height(12.dp))
 
                     Text(
@@ -191,9 +185,7 @@ fun DetailsScreen() {
                 }
             }
         }
-
         Spacer(modifier = Modifier.height(32.dp))
-
         Text(
             modifier = Modifier.padding(start = 16.dp),
             text = stringResource(R.string.overview),
@@ -210,10 +202,7 @@ fun DetailsScreen() {
                 fontSize = 16.sp,
             )
         }
-
         Spacer(modifier = Modifier.height(32.dp))
-
-
     }
 
 }
